@@ -12,8 +12,7 @@ class Routes extends Component {
         <Router>
             <div>
                 <Route exact path="/" component={HomePage}/>
-                <Route  path="/page2" component={Pages2}/>
-
+                <Route  exact path="/page2" component={Pages2}/>
             </div>
         </Router>
     );
