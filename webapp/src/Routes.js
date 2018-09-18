@@ -3,17 +3,20 @@ import './App.css';
 import HomePage from './components/pages/HomePage';
 import CommitteesPage from './components/pages/CommitteesPage';
 
-import { BrowserRouter as Router, Route,  } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link,Switch } from 'react-router-dom';
 
 
 class Routes extends Component {
   render() {
     return (
         <Router>
-            <div>
-                <Route exact path="/" component={HomePage}/>
-                <Route  exact path="/Committees" component={CommitteesPage}/>
-            </div>
+            <Switch>
+              
+                    <Route exact path="/" component={HomePage}/>
+                    <Route  exact path="/Committees" component={CommitteesPage}/>
+                    <Route path="*" exact={true} component={class _404 extends Component{render(){return(<p>404 FUCKING PANIC!!</p>)}}}/>
+                
+            </Switch>
         </Router>
     );
   }
