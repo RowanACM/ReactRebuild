@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default class Navigation extends React.Component {
+export default class Jumbotron extends React.Component {
     constructor() {
         super();
     }

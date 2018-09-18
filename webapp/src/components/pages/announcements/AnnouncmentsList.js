@@ -1,7 +1,7 @@
 import React from 'react'
+import AnnouncementCard from './AnnouncementCard'
 
-
-export default class Navigation extends React.Component {
+export default class AnnouncementsList extends React.Component {
     constructor() {
         super();
     }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default class Navigation extends React.Component {
+export default class CommitteeCard extends React.Component {
     constructor() {
         super();
     }

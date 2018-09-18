@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import HomePage from './components/pages/HomePage';
-import Pages2 from './components/pages/Page2';
+import CommitteesPage from './components/pages/CommitteesPage';
 
 import { BrowserRouter as Router, Route,  } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ class Routes extends Component {
         <Router>
             <div>
                 <Route exact path="/" component={HomePage}/>
-                <Route  exact path="/page2" component={Pages2}/>
+                <Route  exact path="/Committees" component={CommitteesPage}/>
             </div>
         </Router>
     );
