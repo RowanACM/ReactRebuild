@@ -3,8 +3,8 @@ import React from 'react'
 import Navigation from './header/Navigation'
 import Footer from './footer/Footer'
 import './pages/HomePage';
-import  Routes from '../Routes'
-
+import  Routes from '../Routes';
+import {auth, signIn} from './auth';
 
 export default class Layout extends React.Component {
     constructor (props) {
@@ -17,7 +17,7 @@ export default class Layout extends React.Component {
                 <div >
                     <Navigation />
                     <div>
-                       <Routes/>
+                        <Routes/>
                     </div>
                     <Footer />
                 </div>
