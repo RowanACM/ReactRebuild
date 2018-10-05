@@ -1,11 +1,13 @@
-import React from 'react'
+import React from 'react';
+import CommitteeMemberCard from './CommitteeMemberCard';
 
 
-export default class CommitteeMemberCard extends React.Component {
-    constructor() {
+export default class CommitteeMemberCardList extends React.Component {
+    constructor(props) {
         super();
         this.state={
-            committee:this.props.committee
+            committee:props.committee,
+            memberList:[]
         }
     }
 
@@ -15,7 +17,7 @@ export default class CommitteeMemberCard extends React.Component {
     componentDidMount() {
         fetch("/GetCommitteeMembers/"+this.state.committee)
         .then((res)=>{return res.json()})
-        .then(json=>this.setState({name:json.name,desc:json.desc,picURL:json.picURL}));
+        .then(json=>this.setState({memberList:json}));
 
     }
 
@@ -24,10 +26,18 @@ export default class CommitteeMemberCard extends React.Component {
 
 
     render () {
-        
         return (
             <div>
-               
+            {this.state.memberList.map((member,i)=>
+                {
+                    
+                    return <CommitteeMemberCard name={member.firstname+" "+member.lastname} 
+                    desc="Some description" picURL={member.pictureUrl==null?"https://cdn.newsapi.com.au/image/v1/c9fc5df46cff1081ac13ae18638de1ab":member.pictureUrl}/>
+                }
+
+
+            )
+            }
             </div>
         )
     }

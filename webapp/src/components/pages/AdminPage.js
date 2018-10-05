@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import '../../App.css';
 import AnnouncementForm from './admin/AnnouncementForm';
+import MemberForm from './admin/MemberForm';
 
 
 
@@ -20,7 +21,7 @@ export default class AdminPage extends React.Component {
         return <div><AnnouncementForm /></div>;
     }
     renderMemberForm(){
-        return <text>hi</text>;
+        return <MemberForm />;
     }
 
     render() {

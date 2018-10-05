@@ -2,12 +2,12 @@ import React from 'react'
 
 
 export default class CommitteeMemberCard extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
         this.state={
-            name:null,
-            desc:null,
-            picURL:null
+            name:props.name,
+            desc:props.desc,
+            picURL:props.picURL
         }
     }
 
@@ -15,9 +15,7 @@ export default class CommitteeMemberCard extends React.Component {
 
     }
     componentDidMount() {
-        fetch("/GetCommitteeMember")
-        .then((res)=>{return res.json()})
-        .then(json=>this.setState({name:json.name,desc:json.desc,picURL:json.picURL}));
+        
 
     }
 

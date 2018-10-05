@@ -14,6 +14,7 @@ export default class AnnouncementForm extends React.Component {
             imageUrl:"",
             externalLink:"",
             selectedCommittee:"",
+            announcements:[]
 
 
             
@@ -27,6 +28,7 @@ export default class AnnouncementForm extends React.Component {
     }
     componentDidMount() {
         fetch("/GetCommittees").then((res)=>res.json()).then((json)=>{this.setState({committees:json})});
+        fetch("/GetAnnouncements").then((res)=>res.json()).then((json)=>{this.setState({announcements:json})});
 
     }
     handleChange(event) {
@@ -45,7 +47,35 @@ export default class AnnouncementForm extends React.Component {
                 break;
             case "committee":
                 this.setState({committeeId:event.target.value});
-                console.log(event.target.value);
+                break;
+            case "announcement":
+                
+                if(event.target.value!=-1){
+                    fetch("/getAnnouncement/"+event.target.value)
+                    .then((res)=>
+                        
+                        res.json())
+                    .then((json)=>{
+                        console.log(json);
+                        this.setState(json);
+                    })
+                }
+                else{
+                    this.setState(
+                        {id:this.props.id,
+                        author:this.props.author,
+                        authorToken:this.props.authorToken,
+                        title:"",
+                        text:"",
+                    
+                        imageUrl:"",
+                        externalLink:"",
+                        selectedCommittee:"",
+                        
+                        committeeId:-1});
+                        
+                }
+                this.setState({announcementId:event.target.value});
                 break;
         }
     }
@@ -54,6 +84,26 @@ export default class AnnouncementForm extends React.Component {
             alert("Please select a committee!");
         }
         else{
+            console.log(this.state.announcementId);
+            if(this.state.announcementId!=-1){
+                var j={author:this.state.author,
+                    id:this.state.announcementId,
+                    authorToken:this.state.authorToken,
+                    title:this.state.title,
+                    text:this.state.text,
+                    imageUrl:this.state.imageUrl,
+                    externalLink:this.state.externalLink,
+                    committeeId:this.state.committeeId};
+            }
+            else{
+                var j={author:this.state.author,
+                    authorToken:this.state.authorToken,
+                    title:this.state.title,
+                    text:this.state.text,
+                    imageUrl:this.state.imageUrl,
+                    externalLink:this.state.externalLink,
+                    committeeId:this.state.committeeId};
+            }
             fetch('/AddEditAnouncement', {
                 method: 'POST',
                 /*mode:'no-cors',*/
@@ -61,16 +111,7 @@ export default class AnnouncementForm extends React.Component {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                   },
-                body: JSON.stringify({
-                    author:this.state.author,
-                    authorToken:this.state.authorToken,
-                    title:this.state.title,
-                    text:this.state.text,
-                    imageUrl:this.state.imageUrl,
-                    externalLink:this.state.externalLink,
-                    committeeId:this.state.committeeId
-                    
-            })
+                body: JSON.stringify(j)
             });
         }
      
@@ -84,6 +125,12 @@ export default class AnnouncementForm extends React.Component {
             <div style={style}>
                 <form>
                     <div class="form-group">
+                        <select class="form-control" id="announcement" onChange={this.handleChange}>
+                        <option value={-1}>CREATE NEW</option>
+                        {this.state.announcements.map((c,i)=>{
+                            return <option value={c.announcementId}>{c.title}</option>
+                        })}
+                        </select>
                         <label for="title">Title</label>
                         <input type="text" id="title" class="form-control" placeholder="Title of Announcement" value={this.state.title} onChange={this.handleChange}/>
                         <label for="text">Text</label>
@@ -93,7 +140,7 @@ export default class AnnouncementForm extends React.Component {
                         <label for="external-link">External Link</label>
                         <input type="text" id="external-link" class="form-control" placeholder="Interesting External Link" value={this.state.externalLink} onChange={this.handleChange}/>
                         <label for="committee">Committee</label>
-                        <select class="form-control" id="committee" onChange={this.handleChange}>
+                        <select class="form-control" id="committee" onChange={this.handleChange} value={this.state.committeeId}>
                         <option value={-1}>Please select a committee</option>
                         {this.state.committees.map((c,i)=>{
                             return <option value={c.committeeId}>{c.name}</option>
