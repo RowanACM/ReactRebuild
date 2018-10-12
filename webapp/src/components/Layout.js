@@ -4,8 +4,8 @@ import Navigation from './header/Navigation'
 import Footer from './footer/Footer'
 import './pages/HomePage';
 import  Routes from '../Routes';
-import {auth, signIn} from './auth';
-
+//import {auth, signIn} from './auth';
+var signIn=null;
 export default class Layout extends React.Component {
     constructor (props) {
         super(props)

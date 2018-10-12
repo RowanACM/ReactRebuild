@@ -10,12 +10,8 @@ import CommitteeMemberCardList from './components/pages/committees/committee_mem
 
 
 ReactDOM.render(
-    <Jumbotron
-        title={"Rowan ACM"}
-        subtitle={"Meetings on Friday @ 2-4pm in Robinson 201 a/b"}
-        img={"https://rowanacm.org/img/bannerBackgroundSmall.jpg"}
-    />,
-    /*<Layout/>,*/
+    
+    <Layout/>,
     document.getElementById('root')
 );
 
