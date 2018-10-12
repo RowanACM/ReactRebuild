@@ -40,7 +40,6 @@ export default class MemberForm extends React.Component {
         fetch("/GetFullMembers/"+this.state.adminUid+"/"+this.state.adminToken).then((res)=>res.json()).then((json)=>{this.setState({members:json})});
     }
     handleChange(event) {
-        console.log(event.target.id);
         switch(event.target.id){
             case "firstname":
                 this.setState({firstname: event.target.value});
@@ -118,17 +117,22 @@ export default class MemberForm extends React.Component {
                 //this.setState({memberId:event.target.value});
                 break;
                 default:
-                    /*for(var i in this.state.committees){
-                        console.log("committee-id-"+this.state.committees[i].committeeId);
-                        if(event.target.id===("committee-id-"+this.state.committees[i].committeeId){
+                    for(var i in this.state.committees){
+                        if(event.target.id===("committee-id-"+this.state.committees[i].committeeId)){
                             if(this.state.memberCommittees.includes(this.state.committees[i].committeeId)){
                                 var list=this.state.memberCommittees;
                                 list.splice(i,1);
                                 this.setState({memberCommittees:list});
                             }
+                            else{
+                                var list=this.state.memberCommittees;
+                                list.push(this.state.committees[i].committeeId);
+                                this.setState({memberCommittees:list});
+                            }
                             
                         }
-                    }*/
+                        
+                    }
                     break;
         }
     }

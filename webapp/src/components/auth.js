@@ -17,9 +17,10 @@ auth.currentUser.updatePassword(password);
 
 export function signIn(event,func){
     var provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider).then(()=>{
-        //TODO send sign in to database
-          }).catch(function(error) {
+    auth.signInWithPopup(provider).then(function(result){
+      if(func!=undefined)
+        func(result);
+    }).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;

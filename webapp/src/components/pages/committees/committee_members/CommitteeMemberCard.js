@@ -18,11 +18,6 @@ export default class CommitteeMemberCard extends React.Component {
         
 
     }
-
-
-
-
-
     render () {
         var style={
             width:"18rem"

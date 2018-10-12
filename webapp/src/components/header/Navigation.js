@@ -2,7 +2,7 @@ import React from 'react'
 
 
 export default class Navigation extends React.Component {
-    constructor() {
+    constructor(props) {
         super();
     }
 
@@ -22,7 +22,7 @@ export default class Navigation extends React.Component {
 
         return (
             <div>
-
+                <input type="button" onClick={this.props.signIn}/>
                 
             </div>
         )
