@@ -60,6 +60,12 @@ export default class CommitteeForm extends React.Component {
                         
                 }
                 break;
+            case "committee-head-id":
+                this.setState({committeeHeadId:event.target.value});
+                break;
+            case "learning-chair-id":
+                this.setState({learningChairId:event.target.value});
+                break;
         }
     }
     handleSubmit(event) {
@@ -118,14 +124,15 @@ export default class CommitteeForm extends React.Component {
                         <select class="form-control" id="committee-head-id" onChange={this.handleChange} value={this.state.committeeHeadId}>
                             <option value={-1}>Please select a Committee Head</option>
                             {this.state.members.map((c,i)=>{
-                                return <option value={c.memberid}>{c.lastname}, {c.firstname}</option>
+                                return <option value={c.memberId}>{c.lastName}, {c.firstName}</option>
                             })}
                         </select>
                         <label for="learning-chair-id">LearningChair</label>
                         <select class="form-control" id="learning-chair-id" onChange={this.handleChange} value={this.state.learningChairId}>
                             <option value={-1}>Please select a Learning Chair</option>
                             {this.state.members.map((c,i)=>{
-                                return <option value={c.memberId}>{c.lastname}, {c.firstname}</option>
+                                console.log(c);
+                                return <option value={c.memberId}>{c.lastName}, {c.firstName}</option>
                             })}
                         </select>
                         <input type="button" id="submit" class="form-control" onClick={this.handleSubmit} value="Submit" style={{width:"100px", marginTop:"30px"}}></input>
