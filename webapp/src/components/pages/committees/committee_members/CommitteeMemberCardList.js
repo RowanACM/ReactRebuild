@@ -28,16 +28,19 @@ export default class CommitteeMemberCardList extends React.Component {
     render () {
         return (
             <div>
-            {this.state.memberList.map((member,i)=>
-                {
+                <div class="container">
+                    <div class="row">
+                    {this.state.memberList.map((member,i)=>
+                        {
                     
-                    return <CommitteeMemberCard name={member.firstname+" "+member.lastname} 
-                    desc="Some description" picURL={member.pictureUrl==null?"http://cliparting.com/wp-content/uploads/2016/10/Person-people-icon-clipart-kid.png":member.pictureUrl}/>
-                }
-
-
-            )
-            }
+                             return <div style={{margin:"20px"}}><CommitteeMemberCard name={member.firstname+" "+member.lastname} 
+                                    desc="Some description" picURL={member.pictureUrl==null?"http://cliparting.com/wp-content/uploads/2016/10/Person-people-icon-clipart-kid.png":member.pictureUrl}/>
+                                    </div>
+                        })
+                        }
+                    </div>
+                </div>
+            
             </div>
         )
     }
