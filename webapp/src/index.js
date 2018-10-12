@@ -9,7 +9,7 @@ import CommitteeMemberCardList from './components/pages/committees/committee_mem
 
 
 ReactDOM.render(
-    <Layout/>,
+    <CommitteeMemberCardList committee={"Full Stack"}/>,
     document.getElementById('root')
 );
 

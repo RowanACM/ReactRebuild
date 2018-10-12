@@ -32,7 +32,7 @@ export default class CommitteeMemberCardList extends React.Component {
                 {
                     
                     return <CommitteeMemberCard name={member.firstname+" "+member.lastname} 
-                    desc="Some description" picURL={member.pictureUrl==null?"https://cdn.newsapi.com.au/image/v1/c9fc5df46cff1081ac13ae18638de1ab":member.pictureUrl}/>
+                    desc="Some description" picURL={member.pictureUrl==null?"http://cliparting.com/wp-content/uploads/2016/10/Person-people-icon-clipart-kid.png":member.pictureUrl}/>
                 }
 
 
