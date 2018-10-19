@@ -10,10 +10,6 @@ import CommitteeMemberCardList from './components/pages/committees/committee_mem
 
 
 ReactDOM.render(
-<<<<<<< Updated upstream
-    
-=======
->>>>>>> Stashed changes
     <Layout/>,
     document.getElementById('root')
 );
