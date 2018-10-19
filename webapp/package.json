@@ -3,16 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "firebase": "^5.5.2",
+    "mdbreact": "^4.8.1",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.2.0",
-    "react-router": "^4.2.0",
+    "react-route": "^1.0.3",
+    "react-router": "^4.3.1",
     "react-router-dom": "^4.2.2",
-    "react-scripts": "1.1.1"
+    "react-scripts": "1.1.1",
+    "reactstrap": "^6.5.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://142.93.240.48:5002"
 }
