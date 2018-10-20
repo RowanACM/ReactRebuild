@@ -76,8 +76,8 @@ export default class CommitteeForm extends React.Component {
                     description:this.state.description,
                     committeeHeadId:this.state.committeeHeadId==-1?undefined:this.state.committeeHeadId,
                     learningChairId:this.state.learningChairId==-1?undefined:this.state.learningChairId,
-                    adminUid:this.state.adminUid,
-                    adminToken:this.state.adminToken
+                    author:this.state.adminUid,
+                    authorToken:this.state.adminToken
                     };
             }
             else{
@@ -86,8 +86,8 @@ export default class CommitteeForm extends React.Component {
                     description:this.state.description,
                     committeeHeadId:this.state.committeeHeadId==-1?undefined:this.state.committeeHeadId,
                     learningChairId:this.state.learningChairId==-1?undefined:this.state.learningChairId,
-                    adminUid:this.state.adminUid,
-                    adminToken:this.state.adminToken};
+                    author:this.state.adminUid,
+                    authorToken:this.state.adminToken};
             }
             fetch('/AddEditCommittee', {
                 method: 'POST',
@@ -97,7 +97,7 @@ export default class CommitteeForm extends React.Component {
                     'Content-Type': 'application/json'
                   },
                 body: JSON.stringify(j)
-            });
+            }).then(alert("done"));
         }
      
     

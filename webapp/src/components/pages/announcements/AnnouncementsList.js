@@ -20,12 +20,16 @@ export default class AnnouncementsList extends React.Component {
 
     render () {
         return (
-            <div class="container">
-                {this.state.announcementList.map((announcement, i) =>
-                    {
-                        return <div><AnnouncementCard title={announcement.title} text={announcement.text} postedDate={announcement.postedDate}><div>
-                    })
-                }
+            <div class="container-fluid" style={{width:"100%"}}>
+                <div className="row">
+                    <div className="col">
+                    {this.state.announcementList.map((announcement, i) =>
+                        {
+                            return <div><AnnouncementCard title={announcement.title} text={announcement.text} postedDate={announcement.postedDate} committee={announcement.name} externalLink={announcement.externalLink}/></div>
+                        })
+                    }
+                    </div>
+                </div>
             </div>
         )
     }
