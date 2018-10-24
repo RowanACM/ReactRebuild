@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import '../../App.css';
+import CommitteesList from './committees/CommitteesList';
 
 
 
@@ -17,7 +18,7 @@ export default class CommitteesPage extends React.Component {
 
         return (
         <div className="App">
-           
+           <CommitteesList />
         </div>
         );
 

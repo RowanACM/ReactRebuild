@@ -34,10 +34,8 @@ export default class Jumbotron extends React.Component {
     render () {
 
         return (
-            <div>
-
-
-                <div className={"jumbotron"} style={{backgroundImage: `url(${this.img})`}}>
+            
+                <div className={"jumbotron"} style={{height:"700px",backgroundImage: `url(${this.img})`}}>
                     <div className={"container"}>
 
                         <h1>{this.title}</h1>
@@ -50,7 +48,7 @@ export default class Jumbotron extends React.Component {
                 </div>
 
                 
-            </div>
+            
         )
     }
 
