@@ -40,7 +40,7 @@ export default class Jumbotron extends React.Component {
 
                         <h1>{this.title}</h1>
 
-                        <div id={"jumboFooter"}>
+                        <div id={"jumboSubtitle"}>
                             {this.subtitle}
                         </div>
 
