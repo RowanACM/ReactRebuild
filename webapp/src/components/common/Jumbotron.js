@@ -45,7 +45,6 @@ export default class Jumbotron extends React.Component {
                 let height = j.clientHeight;
 
                 // Avoids stuttering
-                console.log(document.body.clientHeight, scroll + window.innerHeight);
                 if (j.getBoundingClientRect().top + height <= 0 || scroll + window.innerHeight == document.body.clientHeight) {
                     return;
                 }
