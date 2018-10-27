@@ -13,6 +13,7 @@ body {
     padding: 0;
 
     background: no-repeat center center;
+    position: relative;
 
     color: white;
     font-family: "Roboto", "Helvetica", sans-serif;
