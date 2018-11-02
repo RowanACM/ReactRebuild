@@ -30,7 +30,7 @@ export default class CommitteesList extends React.Component {
 
         return (
             <div className="container-fluid">
-                <div className="row">
+                <div className="row" style={{justifyContent: "center"}}>
                     {this.state.committees.map((committee,i)=>{
                       return   <CommitteeCard title={committee.name} 
                         body={committee.description} 
