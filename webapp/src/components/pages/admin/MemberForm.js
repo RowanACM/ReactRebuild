@@ -82,7 +82,7 @@ export default class MemberForm extends React.Component {
                     .then((json)=>{
                         console.log(json);
                         this.setState(json);
-                        this.setState({memberId:json.memberid});
+                        this.setState({memberId:json.memberId});
                     });
                     fetch("/GetCommitteesByMember/"+event.target.value)
                     .then((res)=>res.json())
@@ -147,6 +147,7 @@ export default class MemberForm extends React.Component {
                     'Content-Type': 'application/json'
                   },
                 body: JSON.stringify({
+                    memberId:this.state.memberId,
                     adminToken:this.state.adminToken,
                     adminUid:this.state.adminUid,
                     memberId:this.state.memberId,
