@@ -8,8 +8,9 @@ import {
     NavItem,
     NavLink, } from 'reactstrap';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory, IndexRoute } from 'react-router'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import CommitteesPage from "../pages/CommitteesPage";
+import HomePage from "../pages/HomePage";
 
 export default class Example extends React.Component {
     constructor(props) {
@@ -28,22 +29,37 @@ export default class Example extends React.Component {
 
     render() {
         return (
-            <div>
-                <Navbar color="light" light expand="md" pullRight>
-                    <NavbarBrand href="/" ><img src="./acmLogo.jpg" height={"50px"} width={"50px"} alt={""}/>RowanACM</NavbarBrand>
-                    <NavbarToggler onClick={this.toggle} />
-                    <Collapse isOpen={this.state.isOpen} navbar>
-                        <Nav className="ml-auto" navbar>
-                            <NavItem>
-                                <NavLink href="/">Home</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/">Committees</NavLink>
-                            </NavItem>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
-            </div>
+            <Router>
+                <div>
+                    <Navbar color="light" light expand="md">
+                        <NavbarBrand href="/" ><img src="./acmLogo.jpg" height={"50px"} width={"50px"} alt={""}/>RowanACM</NavbarBrand>
+                        <NavbarToggler onClick={this.toggle} />
+                        <Collapse isOpen={this.state.isOpen} navbar>
+                            <Nav className="ml-auto" navbar>
+                                <Link to={"/"}>
+                                    <NavItem>
+                                        <NavLink href="/">Home</NavLink>
+                                    </NavItem>
+                                </Link>
+                                <Link to={"/Committees"}>
+                                    <NavItem>
+                                        <NavLink href="/">Committees</NavLink>
+                                    </NavItem>
+                                </Link>
+                                {(this.state.isAdmin === true)?
+                                <Link to={"/Committees"}>
+                                    <NavItem>
+                                        <NavLink href="/Admin">Admin</NavLink>
+                                    </NavItem>
+                                </Link> :null}
+                                <NavItem>
+                                    <NavLink /*onClick={this.props.signIn}*/>Sign In</NavLink>
+                                </NavItem>
+                            </Nav>
+                        </Collapse>
+                    </Navbar>
+                </div>
+            </Router>
         );
     }
 }
