@@ -5,7 +5,9 @@ export default class Footer extends React.Component {
 
 
         return (
-            <div>    <div style={{margin:"auto", display:"in-line" ,width:"50%",textAlign:"center"}}>
+            <footer>
+            <div>    
+                <div style={{margin:"auto", display:"in-line" ,width:"50%",textAlign:"center"}}>
               <a href="https://twitter.com/RowanACM">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -38,6 +40,7 @@ export default class Footer extends React.Component {
             </div>
             <p class="copyright text-muted" style={{margin:"auto", display:"in-line" ,width:"50%",textAlign:"center"}}>Copyright © Rowan ACM 2018</p>
             </div>
+            </footer>
         
             
         )

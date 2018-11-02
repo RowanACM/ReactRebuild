@@ -4,8 +4,8 @@ import Navigation from './header/Navigation'
 import Footer from './footer/Footer'
 import './pages/HomePage';
 import  Routes from '../Routes';
-//import {auth, signIn} from './auth';
-var signIn=null;
+import {auth, signIn} from './auth';
+
 export default class Layout extends React.Component {
     constructor (props) {
         super(props)
@@ -47,14 +47,16 @@ export default class Layout extends React.Component {
 
 
     render () {
-        if(this.state.user)
-            console.log("Layout "+this.state.user.uid);
+        
+            
         return (
                 <div >
                     <Navigation signIn={this.signIn}/>
+                    <hr/>
                     <div>
-                    <Routes isAdmin={this.state.isAdmin} user={this.state.user} adminUid={this.state.user&&this.state.user.uid?this.state.user.uid:null} adminToken={this.state.credentials!=null&&this.state.credentials.accessToken?this.state.credentials.accessToken:null}/>
+                        <Routes isAdmin={this.state.isAdmin} user={this.state.user} adminUid={this.state.user&&this.state.user.uid?this.state.user.uid:null} adminToken={this.state.credentials!=null&&this.state.credentials.accessToken?this.state.credentials.accessToken:null}/>
                     </div>
+                    <hr/>
                     <Footer />
                 </div>
         )

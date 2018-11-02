@@ -3,11 +3,11 @@ import React from 'react'
 
 export default class AnnouncementForm extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state={
             id:props.id,
-            author:props.author,
-            authorToken:props.authorToken,
+            author:props.adminUid,
+            authorToken:props.adminToken,
             title:"",
             text:"",
             committees:[{name:"app",committeeId:1},{name:"not app",committeeId:2}],
@@ -62,9 +62,10 @@ export default class AnnouncementForm extends React.Component {
                 }
                 else{
                     this.setState(
-                        {id:this.props.id,
-                        author:this.props.author,
-                        authorToken:this.props.authorToken,
+                        {
+                        id:this.props.id,
+                        author:this.props.adminUid,
+                        authorToken:this.props.adminToken,
                         title:"",
                         text:"",
                     
@@ -84,9 +85,10 @@ export default class AnnouncementForm extends React.Component {
             alert("Please select a committee!");
         }
         else{
-            console.log(this.state.announcementId);
+            console.log(this.state.author);
             if(this.state.announcementId!=-1){
-                var j={author:this.state.author,
+                var j={
+                    author:this.state.author,
                     id:this.state.announcementId,
                     authorToken:this.state.authorToken,
                     title:this.state.title,
@@ -96,7 +98,8 @@ export default class AnnouncementForm extends React.Component {
                     committeeId:this.state.committeeId};
             }
             else{
-                var j={author:this.state.author,
+                var j={
+                    author:this.state.author,
                     authorToken:this.state.authorToken,
                     title:this.state.title,
                     text:this.state.text,
@@ -112,7 +115,7 @@ export default class AnnouncementForm extends React.Component {
                     'Content-Type': 'application/json'
                   },
                 body: JSON.stringify(j)
-            });
+            }).then(alert("done"));
         }
      
     }

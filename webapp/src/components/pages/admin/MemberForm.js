@@ -8,8 +8,8 @@ export default class MemberForm extends React.Component {
             adminUid:props.adminUid,
             adminToken:props.adminToken,
             memberId:props.id,
-            firstname:"",
-            lastname:"",
+            firstName:"",
+            lastName:"",
             email:"",
             memberCommittees:[],
             committees:[],
@@ -19,7 +19,7 @@ export default class MemberForm extends React.Component {
             githubUsername:"",
             slackUsername:"",
             bannerId:"",
-            canPostAnnouncements:false,
+            isAdmin:false,
 
             
             
@@ -38,14 +38,15 @@ export default class MemberForm extends React.Component {
     componentDidMount() {
         fetch("/GetCommittees").then((res)=>res.json()).then((json)=>{this.setState({committees:json})});
         fetch("/GetFullMembers/"+this.state.adminUid+"/"+this.state.adminToken).then((res)=>res.json()).then((json)=>{this.setState({members:json})});
+        
     }
     handleChange(event) {
         switch(event.target.id){
             case "firstname":
-                this.setState({firstname: event.target.value});
+                this.setState({firstName: event.target.value});
                 break;
             case "lastname":
-                this.setState({lastname:event.target.value});
+                this.setState({lastName:event.target.value});
                 break;
             case "email":
                 this.setState({email:event.target.value});
@@ -69,7 +70,7 @@ export default class MemberForm extends React.Component {
                 this.setState({bannerId:event.target.value});
                 break;
             case "can-post-announcements":
-                this.setState({canPostAnnouncements:!(this.state.canPostAnnouncements)});
+                this.setState({isAdmin:!(this.state.isAdmin)});
                 break;
             case "members":
                 
@@ -92,6 +93,7 @@ export default class MemberForm extends React.Component {
                             joinedCommittees.push(json[item].committeeId);
                             
                         }
+                        this.setState({memberCommittees:joinedCommittees});
                         
                     })
                 }
@@ -99,8 +101,8 @@ export default class MemberForm extends React.Component {
                     this.setState(
                         {
                             memberId:null,
-                            firstname:"",
-                            lastname:"",
+                            firstName:"",
+                            lastName:"",
                             email:"",
                             memberCommittees:[],
                             committees:[],
@@ -110,7 +112,7 @@ export default class MemberForm extends React.Component {
                             githubUsername:"",
                             slackUsername:"",
                             bannerId:"",
-                            canPostAnnouncements:false,
+                            isAdmin:false,
                         });
                         
                 }
@@ -148,8 +150,8 @@ export default class MemberForm extends React.Component {
                     adminToken:this.state.adminToken,
                     adminUid:this.state.adminUid,
                     memberId:this.state.memberId,
-                    firstname:this.state.firstname,
-                    lastname:this.state.lastname,
+                    firstName:this.state.firstName,
+                    lastName:this.state.lastName,
                     email:this.state.email,
                     phoneNumber:this.state.phoneNumber,
                     slackUsername:this.state.slackUsername,
@@ -157,7 +159,7 @@ export default class MemberForm extends React.Component {
                     googleUid:this.state.googleUid,
                     pictureUrl:this.state.pictureUrl,
                     bannerId:this.state.bannerId,
-                    canPostAnnouncements:this.state.canPostAnnouncements,
+                    isAdmin:this.state.isAdmin,
                     memberCommittees:this.state.memberCommittees,
 
                 })
@@ -177,13 +179,13 @@ export default class MemberForm extends React.Component {
                         <select class="form-control" id="members" onChange={this.handleChange}>
                         <option value={-1}>CREATE NEW</option>
                         {this.state.members.map((c,i)=>{
-                            return <option value={c.memberid}>{c.lastname}, {c.firstname}</option>
+                            return <option value={c.memberId}>{c.lastName}, {c.firstName}</option>
                         })}
                         </select>
                         <label for="firstname">First Name</label>
-                        <input type="text" id="firstname" class="form-control" placeholder="First Name" value={this.state.firstname} onChange={this.handleChange}/>
-                        <label for="lastname">Text</label>
-                        <input type="text" id="lastname" class="form-control" placeholder="Last Name" value={this.state.lastname} onChange={this.handleChange}/>
+                        <input type="text" id="firstname" class="form-control" placeholder="First Name" value={this.state.firstName} onChange={this.handleChange}/>
+                        <label for="lastname">Last Name</label>
+                        <input type="text" id="lastname" class="form-control" placeholder="Last Name" value={this.state.lastName} onChange={this.handleChange}/>
                         <label for="email">Email</label>
                         <input type="text" id="email" class="form-control" placeholder="Member's Email" value={this.state.email} onChange={this.handleChange}/>
                         <label for="phone-number">Phone Number</label>
@@ -197,8 +199,8 @@ export default class MemberForm extends React.Component {
                         <label for="banner-id">Banner Id</label>
                         <input type="text" id="banner-id" class="form-control" placeholder="Banner Id" value={this.state.bannerId} onChange={this.handleChange}/>
                         <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="can-post-announcements" checked={this.state.canPostAnnouncements} value={this.state.canPostAnnouncements} onChange={this.handleChange}/>
-                            <label class="form-check-label" for="can-post-announcements">Can Post Announcements</label>
+                            <input type="checkbox" class="form-check-input" id="can-post-announcements" checked={this.state.isAdmin} value={this.state.isAdmin} onChange={this.handleChange}/>
+                            <label class="form-check-label" for="can-post-announcements">is Admin?</label>
                         </div>
                         
                         

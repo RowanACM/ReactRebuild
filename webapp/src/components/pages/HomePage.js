@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import logo from '../../logo.svg';
 import '../../App.css';
+import Jumbotron from '../common/Jumbotron';
+import AnnouncementList from './announcements/AnnouncementsList.js';
 
 
 
@@ -16,8 +18,12 @@ export default class HomePage extends React.Component {
     render() {
 
 
-        return <div className="App">
+        return <div>
+            <Jumbotron title="Rowan ACM" subtitle="Meetings on Friday @ 2-4pm in Robinson 201 a/b" img="https://raw.githubusercontent.com/RowanACM/ACMApp/master/website/img/bannerBackgroundSmall.jpg"/>
             
+            <div>
+            <AnnouncementList /> 
+            </div>
         </div>
 
 
