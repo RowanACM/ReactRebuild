@@ -1,5 +1,5 @@
 import React from 'react'
-
+import {Link} from "react-router-dom"
 
 export default class CommitteeCard extends React.Component {
     constructor(props) {
@@ -30,14 +30,14 @@ export default class CommitteeCard extends React.Component {
 
 
     render () {
-         var style = { width: (this.state.memberEmail.length - 5) + "rem", margin: "20px" };
+        var style={width:"18rem", margin:"20px"};
 
         return (
             <div>
                 <div class="card text-white bg-primary mb-3" style={style}>
                   <img class="card-img-top" src={this.state.picture} alt="Card image cap"></img>
                   <div class="card-body">
-                <h5 class="card-title">{this.state.title}</h5>
+               <Link to = {'/Committee/{this.state.title'}>  <h5 class="card-title">{this.state.title}</h5> </Link>
                 <p class="card-text">{this.state.desc}</p>
                 <a href="#" class="btn btn-secondary" >{this.state.memberEmail}</a>
                   </div>
