@@ -28,7 +28,7 @@ class Routes extends Component {
                     <Route exact path="/Committee/:committeeName" component={CommitteeMembersPage}/>
                     <Route  exact path="/Admin" render={()=><AdminPage adminUid={this.props.adminUid} adminToken={this.props.adminToken} user={this.props.user} isAdmin={this.props.isAdmin}/>}/>
                     <Route exact path="/Account" render={()=><AccountPage user={this.props.user} uid={this.props.adminUid} accessToken={this.props.adminToken} isAdmin={this.props.isAdmin}/>}/>
-                    <Route path="*" exact={true} component={class _404 extends Component{render(){return(<p>404 FUCKING PANIC!!</p>)}}}/>
+                    <Route path="*" exact={true} component={four0fourPage} />
                 
             </Switch>
         </Router>
