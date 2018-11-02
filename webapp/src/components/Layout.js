@@ -41,7 +41,7 @@ export default class Layout extends React.Component {
                 })
         }).then((res)=>res.json()).then(function(res){
             
-            self.setState({isAdmin:res.isAdmin});
+            self.setState({isAdmin:res.isAdmin,updated:true});
         });
     })}
 
