@@ -30,7 +30,7 @@ export default class CommitteeCard extends React.Component {
 
 
     render () {
-        var style={width:"18rem", margin:"20px"};
+         var style = { width: (this.state.memberEmail.length - 5) + "rem", margin: "20px" };
 
         return (
             <div>
