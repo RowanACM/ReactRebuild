@@ -51,9 +51,10 @@ export default class Example extends React.Component {
                                     <NavItem>
                                         <NavLink href="/Admin">Admin</NavLink>
                                     </NavItem>
-                                </Link>
-                                    :null}
-
+                                </Link> :null}
+                                <NavItem>
+                                    <NavLink /*onClick={this.props.signIn}*/>Sign In</NavLink>
+                                </NavItem>
                             </Nav>
                         </Collapse>
                     </Navbar>
