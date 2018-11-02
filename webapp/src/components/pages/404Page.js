@@ -19,7 +19,7 @@ export default class Four0FourPage extends React.Component {
 
 
         return <div>
-            <Jumbotron title="404 Error" subtitle="Please check your url or contact administrator for broken page!" img="https://raw.githubusercontent.com/RowanACM/ACMApp/master/website/img/bannerBackgroundSmall.jpg" />
+            <Jumbotron title="404 Error" subtitle="Please check your URL address or Contact the Web Administrator for the Broken Page!" img="https://raw.githubusercontent.com/RowanACM/ACMApp/master/website/img/bannerBackgroundSmall.jpg" />
 
         </div>
 
