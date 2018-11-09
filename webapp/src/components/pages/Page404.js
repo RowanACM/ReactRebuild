@@ -16,9 +16,7 @@ export default class Page404 extends React.Component {
         let facts = lines.split("\n");
 
         window.onload = function () {
-            console.log("Facts: ", facts.length);
             let fact = facts[Math.floor((Math.random() * facts.length))];
-            console.log(fact);
             document.getElementById("fact").innerText = fact;
         };
 
