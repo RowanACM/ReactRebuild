@@ -27,6 +27,7 @@ export default class Page404 extends React.Component {
 
         return (<div className={"centerParent"}>
 
+                <div style={{color: "gray", fontSize: "25px"}}>404</div>
                 <h1>Gadzooks!</h1>
                 <p>We couldn't find the page you've requested. Here's a fun fact to console you!</p>
                 <p id={"fact"}></p>
