@@ -36,16 +36,17 @@ export default class Example extends React.Component {
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
-                                <Link to={"/"}>
-                                    <NavItem>
-                                        <NavLink href="/">Home</NavLink>
-                                    </NavItem>
-                                </Link>
-                                <Link to={"/Committees"}>
-                                    <NavItem>
-                                        <NavLink href="/">Committees</NavLink>
-                                    </NavItem>
-                                </Link>
+                                <NavItem>
+                                    <NavLink href="/">Home</NavLink>
+                                </NavItem>
+
+                                <NavItem>
+                                    <NavLink href="/Committees">Committees</NavLink>
+                                </NavItem>
+                                <NavItem>
+                                    <NavLink href="https://rowanacm.slack.com/"
+                                    target="_blank">Slack</NavLink>
+                                </NavItem>
                                 {(this.state.isAdmin === true)?
                                 <Link to={"/Committees"}>
                                     <NavItem>
@@ -53,7 +54,7 @@ export default class Example extends React.Component {
                                     </NavItem>
                                 </Link> :null}
                                 <NavItem>
-                                    <NavLink /*onClick={this.props.signIn}*/>Sign In</NavLink>
+                                    <NavLink onClick={this.props.signIn}>Sign In</NavLink>
                                 </NavItem>
                             </Nav>
                         </Collapse>
