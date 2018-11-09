@@ -1,13 +1,7 @@
 
 import React, { Component } from 'react';
 
-import '../../../App.css';
-
-
-
-
-
-export default class Page404 extends React.Component {
+export default class SignIn extends React.Component {
     constructor(props) {
         super(props);
         
