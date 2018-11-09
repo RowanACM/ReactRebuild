@@ -4,14 +4,36 @@ import React, { Component } from 'react';
 export default class Page404 extends React.Component {
     constructor(props) {
         super(props);
-        
+
+        let lines = null;
+        let xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", "facts.txt", false);
+        xmlhttp.send();
+        if (xmlhttp.status==200) {
+            lines = xmlhttp.responseText;
+        }
+
+        let facts = lines.split("\n");
+
+        window.onload = function () {
+            console.log("Facts: ", facts.length);
+            let fact = facts[Math.floor((Math.random() * facts.length))];
+            console.log(fact);
+            document.getElementById("fact").innerText = fact;
+        };
 
     }
-  
+
     render() {
 
 
-        return (<div></div>
+        return (<div className={"centerParent"}>
+
+                <h1>Gadzooks!</h1>
+                <p>We couldn't find the page you've requested. Here's a fun fact to console you!</p>
+                <p id={"fact"}></p>
+
+            </div>
         );
 
 
