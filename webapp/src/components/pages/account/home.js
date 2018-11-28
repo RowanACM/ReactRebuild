@@ -15,7 +15,7 @@ export default class AccountHome extends React.Component {
             user:props.user,
             committees:[],
             joinedCommittees:[],
-            id:-1,
+            memberId:-1,
             firstName:"",
             lastName:"",
             phone:"",
@@ -26,31 +26,37 @@ export default class AccountHome extends React.Component {
 
         }
         this.handleChange = this.handleChange.bind(this);
-        //this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
     componentDidMount(){
 
         
-        if(this.props.accessToken&&this.props.uid)
-        fetch('/GetSelf/'+this.props.uid+"/"+this.props.accessToken).then(res=>res.json()).then((json)=>{
-            console.log(json);
-            this.setState({json});
-        });
+        if(this.props.accessToken&&this.props.uid){
+            fetch('/GetSelf/'+this.props.uid+"/"+this.props.accessToken).then(res=>res.json()).then(json=>this.setState(json));
+        }
         fetch('/GetCommittees').then(res=>res.json()).then(json=>{this.setState({committees:json})});
-        if(this.state.id!=-1)
-            fetch('/GetCommitteeByMember/'+this.state.id).then(res=>res.json()).then(json=>{
-                var clist=[];
-                for(var i in json){
-                    clist.append(i.committeeId);
-                }
-                
-                this.setState({joinedCommittees:clist}
-                    )});
+        console.log(this.state.memberId);
+        if(this.state.memberId!=-1){
+            
+            
+         }
         
     }
+    reloadCommittees(){
+        fetch('/GetCommitteesByMember/'+this.state.memberId).then((res)=>res.json()).then((json)=>{
+            var clist=[];
+            for(var i in json){
+                clist.append(i.committeeId);
+            }
+            
+            this.setState({joinedCommittees:clist}
+                )
+        }
+        );
+    }
     handleChange(event){
-
+       
         switch(event.target.id){
             case "first-name":
                 this.setState({firstName:event.target.value});
@@ -74,25 +80,56 @@ export default class AccountHome extends React.Component {
                 this.setState({bio:event.target.value});
                 break;
             default:
-                
-                for(var c in this.state.committees){
-                    if(event.target.id==="committee"+this.state.committees[c].committeeId){
-                        if(this.state.joinedCommittees.includes(this.state.committees[c].committeeId)){
-                                var list=this.state.joinedCommittees;
-                                list.splice(c,1);
-                                this.setState({joinedCommittees:list});
-                        }
-                        else{
-                            var list=this.state.memberCommittees;
-                            list.push(this.state.committees[c].committeeId);
-                            this.setState({memberCommittees:list});
-                        }
+            for(var i in this.state.committees){
+                if(event.target.id===("committee-id-"+this.state.committees[i].committeeId)){
+                    if(this.state.joinedCommittees.includes(this.state.committees[i].committeeId)){
+                        var list=this.state.joinedCommittees;
+                        list.splice(i,1);
+                        this.setState({joinedCommittees:list});
                     }
+                    else{
+                        var list=this.state.joinedCommittees;
+                        list.push(this.state.committees[i].committeeId);
+                        this.setState({joinedCommittees:list});
+                    }
+                    
                 }
+                
+            }
+                
                 
 
                 
         }
+    }
+    handleSubmit(){
+        fetch("/SaveSelf", {
+            method: 'POST',
+            /*mode:'no-cors',*/
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                memberId:this.state.memberId,
+                adminToken:this.props.accessToken,
+                adminUid:this.props.uid,
+                memberId:this.state.memberId,
+                firstName:this.state.firstName,
+                lastName:this.state.lastName,
+                email:this.state.email,
+                phoneNumber:this.state.phone,
+                slackUsername:this.state.slack,
+                githubUsername:this.state.github,
+                googleUid:this.state.googleUid,
+                pictureUrl:this.state.pictureUrl,
+                bannerId:this.state.bannerId,
+                isAdmin:this.state.isAdmin,
+                bio:this.state.bio,
+                joinedCommittees:this.state.joinedCommittees,
+
+            })
+        });
     }
     render() {
 
@@ -133,14 +170,17 @@ export default class AccountHome extends React.Component {
                 </FormGroup>
                 <FormGroup>
                     <Label for="committees">Committees</Label>
-                    <Input type="select" name="committees" id="committees" multiple onChange={this.handleChange}>
-                        {this.state.committees.map((committee,i)=>{ 
-                            return <option selected={this.state.joinedCommittees.includes(committee.committeeId)?true:false} id={"committee"+committee.id}>{committee.name}</option>
-                        })
-                        }
-                    </Input>
+                    <div name="committees" id="committees">
+                    {this.state.committees.map((c,i)=>{
+                           
+                           return <div class="form-check">
+                                       <input class="form-check-input" type="checkbox" id={"committee-id-"+c.committeeId} checked={this.state.joinedCommittees.includes(c.committeeId)} value={this.state.joinedCommittees.includes(c.committeeId) } onChange={this.handleChange}/>
+                                       <label class="form-check-label" for={c.committeeId}>{c.name}</label>
+                                   </div>
+                       })}
+                </div>
                 </FormGroup>
-                <Button>Save</Button>
+                <Button onClick={this.handleSubmit}>Save</Button>
             </Form>}
         </div>
         );

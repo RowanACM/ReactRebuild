@@ -7,6 +7,9 @@ import CommitteeMembersPage from './components/pages/CommitteeMembersPage';
 
 import { BrowserRouter as Router, Route, Link,Switch } from 'react-router-dom';
 import AccountPage from './components/pages/AccountPage';
+import Page404 from './components/pages/Page404';
+import Navigation from './components/header/Navigation';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
 
 
 class Routes extends Component {
@@ -19,8 +22,10 @@ class Routes extends Component {
     
   }
   render() {
-    return (
-        <Router>
+  
+    return ( 
+        
+            
             <Switch>
               
                     <Route exact path="/" component={HomePage}/>
@@ -28,10 +33,12 @@ class Routes extends Component {
                     <Route exact path="/Committee/:committeeName" component={CommitteeMembersPage}/>
                     <Route  exact path="/Admin" render={()=><AdminPage adminUid={this.props.adminUid} adminToken={this.props.adminToken} user={this.props.user} isAdmin={this.props.isAdmin}/>}/>
                     <Route exact path="/Account" render={()=><AccountPage user={this.props.user} uid={this.props.adminUid} accessToken={this.props.adminToken} isAdmin={this.props.isAdmin}/>}/>
-                    <Route path="*" exact={true} component={four0fourPage} />
+                    <Route path="*" exact={true} component={Page404} />
                 
             </Switch>
-        </Router>
+     
+        
+       
     );
   }
 }

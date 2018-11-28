@@ -15,7 +15,9 @@ export default class AnnouncementsList extends React.Component {
     componentDidMount() {
         fetch("/GetAnnouncements")
         .then((res)=>{return res.json()})
-        .then(json=>this.setState({announcementList:json}));
+        .then(json=>{
+            json.reverse();
+            this.setState({announcementList:json});});
     }
 
     render () {

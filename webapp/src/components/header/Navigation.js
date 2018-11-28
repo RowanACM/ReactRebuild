@@ -12,13 +12,14 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import CommitteesPage from "../pages/CommitteesPage";
 import HomePage from "../pages/HomePage";
 
-export default class Example extends React.Component {
+export default class Navigation extends React.Component {
     constructor(props) {
         super(props);
 
         this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
+            isAdmin: this.props.isAdmin
         };
     }
     toggle() {
@@ -29,38 +30,47 @@ export default class Example extends React.Component {
 
     render() {
         return (
-            <Router>
-                <div>
+           
+                
                     <Navbar color="light" light expand="md">
                         <NavbarBrand href="/" ><img src="./acmLogo.jpg" height={"50px"} width={"50px"} alt={""}/>RowanACM</NavbarBrand>
                         <NavbarToggler onClick={this.toggle} />
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink href="/">Home</NavLink>
+                                    <Link to='/'><NavLink >Home</NavLink></Link>
                                 </NavItem>
 
                                 <NavItem>
-                                    <NavLink href="/Committees">Committees</NavLink>
+                                    <Link to="/Committees"><NavLink >Committees</NavLink></Link>
                                 </NavItem>
                                 <NavItem>
                                     <NavLink href="https://rowanacm.slack.com/"
                                     target="_blank">Slack</NavLink>
                                 </NavItem>
-                                {(this.state.isAdmin === true)?
-                                <Link to={"/Committees"}>
+                                {(this.props.isAdmin === 1)?
+                                
                                     <NavItem>
-                                        <NavLink href="/Admin">Admin</NavLink>
+                                        <Link to='/Admin'><NavLink>Admin</NavLink></Link>
                                     </NavItem>
-                                </Link> :null}
+                                :null}
+                                {!this.props.user?
                                 <NavItem>
-                                    <NavLink onClick={this.props.signIn}>Sign In</NavLink>
+                                    <NavLink onClick={this.props.signIn} style={{cursor:"pointer"}}>Sign In</NavLink>
                                 </NavItem>
+                                :
+                                <NavItem>
+                                        <Link to='/Account'><NavLink>Account</NavLink></Link>
+                                    </NavItem>
+                                }
+                                
                             </Nav>
                         </Collapse>
                     </Navbar>
-                </div>
-            </Router>
+                    
+               
+         
+            
         );
     }
 }
