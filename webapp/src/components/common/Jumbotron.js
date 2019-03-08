@@ -79,7 +79,7 @@ export default class Jumbotron extends React.Component {
 
         return (
             
-                <div className={"jumbotron"} style={{height:"700px",backgroundImage: `url(${this.img})`}}>
+                <div class="jumbotron rounded-0" style={{height: "75vh", backgroundImage: `url(${this.img})`}}>
                     <div className={"container"}>
 
                         <h1>{this.title}</h1>

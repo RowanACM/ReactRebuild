@@ -52,11 +52,10 @@ export default class Layout extends React.Component {
         
             
         return (
-                <div >
+                <div>
                     <BrowserRouter>
                     <div>
                         <Navigation /*signIn={this.signIn}*/ isAdmin={this.state.isAdmin} user={this.state.user}/>
-                        <hr/>
                         <div>
                             <Routes isAdmin={this.state.isAdmin} user={this.state.user} adminUid={this.state.user&&this.state.user.uid?this.state.user.uid:null} adminToken={this.state.credentials!=null&&this.state.credentials.accessToken?this.state.credentials.accessToken:null}/>
                         </div>
