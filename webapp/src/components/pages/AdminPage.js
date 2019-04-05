@@ -17,6 +17,8 @@ export default class AdminPage extends React.Component {
             member:1,
             committee:2
         }
+
+        console.log(props.user);
         
         this.state={
             activePage:this.subpages.announcement,

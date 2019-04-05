@@ -19,7 +19,7 @@ export default class HomePage extends React.Component {
 
 
         return <div>
-            <Jumbotron title="Rowan ACM" subtitle="Meetings on Friday @ 2-4pm in Robinson 201 a/b" img="https://raw.githubusercontent.com/RowanACM/ACMApp/master/website/img/bannerBackgroundSmall.jpg"/>
+            <Jumbotron title="Rowan ACM" subtitle="Meetings on Friday @ 2-4pm in Robinson 201 a/b"/>
             
             <div>
             <AnnouncementList /> 

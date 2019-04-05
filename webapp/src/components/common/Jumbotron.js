@@ -1,5 +1,7 @@
 import React from 'react'
 
+const defaultImg = "https://raw.githubusercontent.com/RowanACM/ACMApp/master/website/img/bannerBackgroundSmall.jpg";
+
 export default class Jumbotron extends React.Component {
     constructor(props) {
         super();
@@ -8,7 +10,7 @@ export default class Jumbotron extends React.Component {
 
             title: props.title,
             subtitle: props.subtitle,
-            img: props.img
+            img: props.img ? props.img : defaultImg
 
         };
 

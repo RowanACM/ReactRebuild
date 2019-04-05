@@ -10,6 +10,7 @@ import AccountPage from './components/pages/AccountPage';
 import Page404 from './components/pages/Page404';
 import Navigation from './components/header/Navigation';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
+import SignIn from "./components/common/SignIn";
 
 
 class Routes extends Component {
@@ -33,6 +34,7 @@ class Routes extends Component {
                     <Route exact path="/Committee/:committeeName" component={CommitteeMembersPage}/>
                     <Route  exact path="/Admin" render={()=><AdminPage adminUid={this.props.adminUid} adminToken={this.props.adminToken} user={this.props.user} isAdmin={this.props.isAdmin}/>}/>
                     <Route exact path="/Account" render={()=><AccountPage user={this.props.user} uid={this.props.adminUid} accessToken={this.props.adminToken} isAdmin={this.props.isAdmin}/>}/>
+                    <Route exact path={"/signin"} render={()=><SignIn user={this.props.user}/>}/>
                     <Route path="*" exact={true} component={Page404} />
                 
             </Switch>
