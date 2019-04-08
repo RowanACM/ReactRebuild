@@ -27,8 +27,8 @@ export default class AnnouncementForm extends React.Component {
 
     }
     componentDidMount() {
-        fetch("/GetCommittees").then((res)=>res.json()).then((json)=>{this.setState({committees:json})});
-        fetch("/GetAnnouncements").then((res)=>res.json()).then((json)=>{this.setState({announcements:json})});
+        fetch("/committees.json").then((res)=>res.json()).then((json)=>{this.setState({committees:json})});
+        fetch("/announcementsList.json").then((res)=>res.json()).then((json)=>{this.setState({announcements:json})});
 
     }
     handleChange(event) {
@@ -86,19 +86,21 @@ export default class AnnouncementForm extends React.Component {
         }
         else{
             console.log(this.state.author);
+
+            let j;
+
             if(this.state.announcementId!=-1){
-                var j={
-                    author:this.state.author,
-                    id:this.state.announcementId,
-                    authorToken:this.state.authorToken,
-                    title:this.state.title,
-                    text:this.state.text,
-                    imageUrl:this.state.imageUrl,
-                    externalLink:this.state.externalLink,
-                    committeeId:this.state.committeeId};
+                j={
+                    name: this.state.title,
+                    desc: this.state.text,
+                    postedDate: this.state.postedDate,
+                    picUrl: this.state.imageUrl,
+                    committee: this.state.committee,
+                    externalLink: this.state.externalLink,
+                    color: this.state.color // Optional
             }
             else{
-                var j={
+                j={
                     author:this.state.author,
                     authorToken:this.state.authorToken,
                     title:this.state.title,

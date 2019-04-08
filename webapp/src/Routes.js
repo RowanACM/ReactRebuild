@@ -20,20 +20,25 @@ class Routes extends Component {
       adminUid:props.adminUid,
       adminToken:props.adminToken
     };
+
+      this.admin = this.adminToken || true? <Route exact path="/Admin" render={()=><AdminPage adminUid={this.props.adminUid} adminToken={this.props.adminToken} user={this.props.user} isAdmin={this.props.isAdmin}/>}/>
+      : <Route exact path="/Admin" render={() => <SignIn redirect={"/Admin"} user={this.props.user}/>}/>
     
   }
   render() {
   
-    return ( 
-        
-            
+    return (
+
+
             <Switch>
               
                     <Route exact path="/" component={HomePage}/>
                     <Route  exact path="/Committees" component={CommitteesPage}/>
                     <Route exact path="/Committee/:committeeName" component={CommitteeMembersPage}/>
-                    <Route  exact path="/Admin" render={()=><AdminPage adminUid={this.props.adminUid} adminToken={this.props.adminToken} user={this.props.user} isAdmin={this.props.isAdmin}/>}/>
+
+                {this.admin}
                     <Route exact path="/Account" render={()=><AccountPage user={this.props.user} uid={this.props.adminUid} accessToken={this.props.adminToken} isAdmin={this.props.isAdmin}/>}/>
+
                     <Route exact path={"/signin"} render={()=><SignIn user={this.props.user}/>}/>
                     <Route path="*" exact={true} component={Page404} />
                 

@@ -45,8 +45,7 @@ export default class Navigation extends React.Component {
                                     <Link to="/Committees"><NavLink >Committees</NavLink></Link>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink href="https://rowanacm.slack.com/"
-                                    target="_blank">Slack</NavLink>
+                                    <NavLink href={"https://rowanacm.slack.com"}>Slack</NavLink>
                                 </NavItem>
                                 {(this.props.isAdmin === 1)?
                                 
@@ -56,7 +55,7 @@ export default class Navigation extends React.Component {
                                 :null}
                                 {!this.props.user?
                                 <NavItem>
-                                    <NavLink onClick={this.props.signIn} style={{cursor:"pointer"}}>Sign In</NavLink>
+                                    <Link to={"/signin"}><NavLink>Sign In</NavLink></Link>
                                 </NavItem>
                                 :
                                 <NavItem>
@@ -67,10 +66,7 @@ export default class Navigation extends React.Component {
                             </Nav>
                         </Collapse>
                     </Navbar>
-                    
-               
-         
-            
+
         );
     }
 }

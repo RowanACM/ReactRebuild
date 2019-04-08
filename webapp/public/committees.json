@@ -1,0 +1,27 @@
+[
+
+  {
+    "title": "Full Stack",
+    "headFirstName": "Mark Vadeika",
+    "headEmail": "vadeik42@students.rowan.edu",
+    "headPicture": "/acmLogo.jpg",
+    "description": "This is the COOLEST group o' guys in the club"
+  },
+
+  {
+    "title": "Full Stack",
+    "headFirstName": "Mark Vadeika",
+    "headEmail": "vadeik42@students.rowan.edu",
+    "headPicture": "/acmLogo.jpg",
+    "description": "This is the COOLEST group o' guys in the club"
+  },
+
+  {
+    "title": "E-Board",
+    "headFirstName": "John J Eboard",
+    "headEmail": "eboardj@staff.rowan.edu",
+    "headPicture": "https://i.ytimg.com/vi/OjWSDWYXvMk/hqdefault.jpg",
+    "description": "Where all the big wigs hang out"
+  }
+
+]

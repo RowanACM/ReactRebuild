@@ -114,7 +114,6 @@ export default class AccountHome extends React.Component {
                 memberId:this.state.memberId,
                 adminToken:this.props.accessToken,
                 adminUid:this.props.uid,
-                memberId:this.state.memberId,
                 firstName:this.state.firstName,
                 lastName:this.state.lastName,
                 email:this.state.email,

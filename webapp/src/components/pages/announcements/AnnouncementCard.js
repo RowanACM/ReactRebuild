@@ -27,7 +27,7 @@ export default class AnnouncmentCard extends React.Component {
     }
 
     render() {
-        var style = {
+        let style = {
             width: "80%",
             height: "10%",
             margin: "auto",

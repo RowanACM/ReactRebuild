@@ -16,7 +16,7 @@ export default class CommitteesList extends React.Component {
         
     }
     componentDidMount() {
-        fetch('/GetCommittees')
+        fetch('/committees.json')
         .then(res=>res.json())
         .then(json=>{this.setState({committees:json})});
 

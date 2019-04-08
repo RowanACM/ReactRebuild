@@ -3,7 +3,7 @@ import {Link} from "react-router-dom"
 
 export default class CommitteeCard extends React.Component {
     constructor(props) {
-        super();
+        super(props);
         this.state={
             title:props.title,
             body:props.body,
@@ -30,7 +30,7 @@ export default class CommitteeCard extends React.Component {
 
 
     render () {
-        var style={width:(this.state.memberEmail.length-10)+"rem", margin:"20px"};
+        var style={height:"90%", margin:"20px"};
 
         return (
             <div>

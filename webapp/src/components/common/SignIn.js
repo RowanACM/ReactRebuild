@@ -4,12 +4,15 @@ import { Redirect } from "react-router-dom";
 import Navigation from "../header/Navigation";
 import Jumbotron from "./Jumbotron";
 
+const defaultRedirect = "/account";
+
 export default class SignIn extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.user = props.user;
+        this.redirect = props.redirect === null ? defaultRedirect : props.redirect;
 
     }
   
@@ -17,7 +20,7 @@ export default class SignIn extends React.Component {
 
         if (this.user) {
 
-            return <Redirect to={"/account"}/>
+            return <Redirect to={this.redirect}/>
 
         }
 
@@ -35,7 +38,7 @@ export default class SignIn extends React.Component {
                                 <div className={"card-header primary"}><h1>Sign In</h1></div>
                                 <div className={"card-body"}>
 
-                                    <form>
+                                    <form action={this.redirect}>
 
                                         <p>Enter your Rowan credentials</p>
                                         <div className={"form-group"}>

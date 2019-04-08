@@ -12,13 +12,12 @@ import CommitteeForm from './admin/CommitteeForm';
 export default class AdminPage extends React.Component {
     constructor(props) {
         super(props);
+
         this.subpages={
             announcement:0,
             member:1,
             committee:2
         }
-
-        console.log(props.user);
         
         this.state={
             activePage:this.subpages.announcement,
@@ -27,6 +26,7 @@ export default class AdminPage extends React.Component {
             user:this.props.user,
             isAdmin:this.props.isAdmin
         };
+
         console.log("Admin Page"+props.adminUid);
     }
     renderAnnouncementForm(){
@@ -52,7 +52,7 @@ export default class AdminPage extends React.Component {
         
         return (
         <div>
-            {this.props.user!=null&&this.props.isAdmin==1?
+            {this.props.user!=null&&this.props.isAdmin==1 || true?
             <div>
             <ul class="nav nav-tabs">
                 <li class="nav-item">
