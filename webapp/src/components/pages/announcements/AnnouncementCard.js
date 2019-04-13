@@ -8,7 +8,7 @@ export default class AnnouncementCard extends React.Component {
             title: props.title,
             text: props.text,
             date: props.date,
-            author: props.author,
+            name: props.name,
             link: props.link, // Optional
             color: props.color // Optional
         };
@@ -42,7 +42,7 @@ export default class AnnouncementCard extends React.Component {
                     {this.state.link ? <a href={this.state.link}><button class="btn primary float-right" style={this.colorStyle}>Read more</button></a> : null}
                 </div>
                 <div class="card-footer text-right">
-                    <small>Posted By {this.state.author} on {this.timeToDate(this.state.date)}</small>
+                    <small>Posted By {this.state.name} on {this.timeToDate(this.state.date)}</small>
                 </div>
 
             </div>
