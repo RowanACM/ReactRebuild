@@ -4,7 +4,7 @@ export default class AnnouncementForm extends React.Component {
     constructor(props) {
 
         super(props);
-        this.state= {
+        this.state = {
             id: props.id,
             author: props.adminUid,
             authorToken: props.adminToken,
@@ -14,9 +14,11 @@ export default class AnnouncementForm extends React.Component {
             imageUrl: "",
             externalLink: "",
             selectedCommittee: "",
-            announcements: []
-
+            announcements: [],
+            idToken: props.idToken
         };
+
+        this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
@@ -33,7 +35,6 @@ export default class AnnouncementForm extends React.Component {
 
     handleSubmit(event) {
 
-
         let a = {};
 
         let form = document.getElementById("form").children;
@@ -46,11 +47,19 @@ export default class AnnouncementForm extends React.Component {
 
         }
 
+        let token = this.state.idToken;
+
         a.date = new Date().getTime();
 
-        const token = "token"; // Placeholder session token
-        fetch(`http://localhost:5000/addAnnouncement?token=${token}&id=0&announcement=${JSON.stringify(a)}`);
-     
+        let xml = new XMLHttpRequest();
+        xml.open("POST", "/addAnnouncement");
+        xml.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xml.send(JSON.stringify({
+            idToken: token,
+            id: "id", // TODO: make this a real thing
+            announcement: JSON.stringify(a)
+        }));
+
     }
 
     render () {
@@ -59,7 +68,7 @@ export default class AnnouncementForm extends React.Component {
         };
         return (
             <div style={style}>
-                <form action={"#"} onSubmit={this.handleSubmit} id={"announcementForm"}>
+                <form action={"/"} onSubmit={this.handleSubmit} id={"announcementForm"}>
                     <div class="form-group" id={"form"}>
 
                         <label htmlFor={"title"}>Title</label>

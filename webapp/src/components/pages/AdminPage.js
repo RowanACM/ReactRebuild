@@ -5,9 +5,12 @@ import '../../App.css';
 import AnnouncementForm from './admin/AnnouncementForm';
 import MemberForm from './admin/MemberForm';
 import CommitteeForm from './admin/CommitteeForm';
+import Cookies from "universal-cookie";
+import {Redirect} from "react-router-dom";
+import Page403 from "./error/400/Page403";
+import SignIn from "../common/SignIn";
 
-
-
+const cookies = new Cookies();
 
 export default class AdminPage extends React.Component {
     constructor(props) {
@@ -17,57 +20,122 @@ export default class AdminPage extends React.Component {
             announcement:0,
             member:1,
             committee:2
-        }
+        };
         
         this.state={
             activePage:this.subpages.announcement,
             adminUid:this.props.adminUid,
             adminToken:this.props.adminToken,
             user:this.props.user,
-            isAdmin:this.props.isAdmin
+            isAdmin:this.props.isAdmin,
+            page: "Loading..."
         };
 
         console.log("Admin Page"+props.adminUid);
     }
     renderAnnouncementForm(){
-        return <div><AnnouncementForm adminUid={this.props.adminUid} adminToken={this.props.adminToken}/></div>;
+        return <div><AnnouncementForm idToken={cookies.get("token")} adminUid={this.props.adminUid} adminToken={this.props.adminToken}/></div>;
     }
     renderMemberForm(){
         return <MemberForm adminUid={this.props.adminUid} adminToken={this.props.adminToken}/>;
     }
 
-    render() {
-        let html;
-        switch(this.state.activePage){
-            case this.subpages.announcement:
-                html=this.renderAnnouncementForm();
-                break;
-            case this.subpages.member:
-                html=this.renderMemberForm();
-                break;
-            case this.subpages.committee:
-                html=<CommitteeForm adminUid={this.props.adminUid} adminToken={this.props.adminToken}/>;
+    componentWillMount() {
+
+    }
+
+    componentDidMount() {
+
+        let c = cookies.get("token");
+
+        if (!c) { // User is not signed in
+            return <SignIn redirect={"/Admin"}/>
         }
-        var style={cursor:"pointer"};
-        
+
+        let onload = r => {
+
+            let res = JSON.parse(xml.response);
+
+            let page;
+
+            if (res["isAdmin"]) { // Render page
+
+                let html;
+                switch (this.state.activePage) {
+                    case this.subpages.announcement:
+                        html = this.renderAnnouncementForm();
+                        break;
+                    case this.subpages.member:
+                        html = this.renderMemberForm();
+                        break;
+                    case this.subpages.committee:
+                        html = <CommitteeForm adminUid={this.props.adminUid} adminToken={this.props.adminToken}/>;
+                }
+                var style = {cursor: "pointer"};
+
+                page = (
+                    <div>
+                        {this.props.user != null && this.props.isAdmin == 1 || true ?
+                            <div>
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item">
+                                        <a class={this.state.activePage == this.subpages.announcement ? "nav-link active" : "nav-link"}
+                                           onClick={() => {
+                                               this.setState({activePage: this.subpages.announcement});
+                                           }} style={style}>Add Announcement</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class={this.state.activePage == this.subpages.member ? "nav-link active" : "nav-link"}
+                                           onClick={() => {
+                                               this.setState({activePage: this.subpages.member});
+                                           }} style={style}>Edit Member</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class={this.state.activePage == this.subpages.committee ? "nav-link active" : "nav-link"}
+                                           onClick={() => {
+                                               this.setState({activePage: this.subpages.committee});
+                                           }} style={style}>Edit Committee</a>
+                                    </li>
+                                </ul>
+                                {html}</div> :
+                            <p>Please Sign In</p>}
+                    </div>
+                );
+
+            } else if (!res["signedIn"]) {
+                page = <Redirect to={"/signIn"}/>;
+            } else {
+                page = <Page403/>;
+            }
+
+            this.setState({page: page});
+
+        };
+
+        onload = onload.bind(this);
+
+        let xml = new XMLHttpRequest();
+        xml.open("POST", "/tokensignin");
+        xml.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xml.onload = onload;
+
+        xml.send(JSON.stringify({
+            verify: true,
+            idToken: c
+        }));
+
+    }
+
+    render() {
+
+        let c = cookies.get("token");
+
+        if (!c) { // User is not signed in
+            return <SignIn redirect={"/admin"}/>
+        }
+
         return (
-        <div>
-            {this.props.user!=null&&this.props.isAdmin==1 || true?
-            <div>
-            <ul class="nav nav-tabs">
-                <li class="nav-item">
-                    <a class={this.state.activePage==this.subpages.announcement?"nav-link active":"nav-link"} onClick={()=>{this.setState({activePage:this.subpages.announcement});}} style={style}>Add Announcement</a>
-                </li>
-                <li class="nav-item">
-                    <a class={this.state.activePage==this.subpages.member?"nav-link active":"nav-link"} onClick={()=>{this.setState({activePage:this.subpages.member});}} style={style}>Edit Member</a>
-                </li>
-                <li class="nav-item">
-                    <a class={this.state.activePage==this.subpages.committee?"nav-link active":"nav-link"} onClick={()=>{this.setState({activePage:this.subpages.committee});}} style={style}>Edit Committee</a>
-                </li>
-            </ul>
-            {html}</div>:
-            <p>Please Sign In</p>}
-        </div>
+            <div>{this.state.page}</div>
         );
 
 

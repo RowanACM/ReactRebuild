@@ -18,7 +18,10 @@
     "reactstrap": "^6.5.0",
     "webpack-dev-server": ">=3.1.11",
     "express": "latest",
-    "jquery": "latest"
+    "jquery": "latest",
+    "react-google-login": "latest",
+    "google-auth-library": "latest",
+    "universal-cookie": "latest"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -31,6 +34,9 @@
       "target": "http://localhost:5000"
     },
     "/addAnnouncement": {
+      "target": "http://localhost:5000"
+    },
+    "/tokensignin": {
       "target": "http://localhost:5000"
     }
   }
