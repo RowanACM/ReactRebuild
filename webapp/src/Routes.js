@@ -13,6 +13,7 @@ import BrowserRouter from 'react-router-dom/BrowserRouter';
 import SignIn from "./components/common/SignIn";
 import ErrorPage from "./components/pages/error/ErrorPage";
 import Cookies from "universal-cookie";
+import AccountList from "./components/pages/account/AccountList";
 
 const cookies = new Cookies();
 
@@ -43,6 +44,7 @@ class Routes extends Component {
 
                 <Route exact path="/" component={HomePage}/>
                 <Route exact path="/Committees" component={CommitteesPage}/>
+                <Route exact path="/people" component={AccountList}/>
                 <Route exact path="/Committee/:committeeName" component={CommitteeMembersPage}/>
 
                 {this.admin}

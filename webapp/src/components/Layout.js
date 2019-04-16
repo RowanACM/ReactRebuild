@@ -6,14 +6,16 @@ import './pages/HomePage';
 import  Routes from '../Routes';
 import {auth, signIn} from './auth';
 import { BrowserRouter } from 'react-router-dom';
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
 
 export default class Layout extends React.Component {
     constructor (props) {
-        super(props)
+        super(props);
         this.state = {
             isAdmin: false,
-            user: null,
-        }
+            user: cookies.get("token"),
+        };
 
     }
    

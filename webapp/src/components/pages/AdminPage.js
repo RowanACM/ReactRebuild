@@ -28,10 +28,10 @@ export default class AdminPage extends React.Component {
             adminToken:this.props.adminToken,
             user:this.props.user,
             isAdmin:this.props.isAdmin,
-            page: "Loading..."
+            page: "Loading...",
+            html: this.renderAnnouncementForm()
         };
 
-        console.log("Admin Page"+props.adminUid);
     }
     renderAnnouncementForm(){
         return <div><AnnouncementForm idToken={cookies.get("token")} adminUid={this.props.adminUid} adminToken={this.props.adminToken}/></div>;
@@ -82,12 +82,14 @@ export default class AdminPage extends React.Component {
                                         <a class={this.state.activePage == this.subpages.announcement ? "nav-link active" : "nav-link"}
                                            onClick={() => {
                                                this.setState({activePage: this.subpages.announcement});
+                                               this.setState({html: this.renderAnnouncementForm()});
                                            }} style={style}>Add Announcement</a>
                                     </li>
                                     <li class="nav-item">
                                         <a class={this.state.activePage == this.subpages.member ? "nav-link active" : "nav-link"}
                                            onClick={() => {
                                                this.setState({activePage: this.subpages.member});
+                                               this.setState({html: this.renderMemberForm()});
                                            }} style={style}>Edit Member</a>
                                     </li>
                                     <li class="nav-item">
@@ -97,7 +99,7 @@ export default class AdminPage extends React.Component {
                                            }} style={style}>Edit Committee</a>
                                     </li>
                                 </ul>
-                                {html}</div> :
+                                </div> :
                             <p>Please Sign In</p>}
                     </div>
                 );
@@ -135,7 +137,10 @@ export default class AdminPage extends React.Component {
         }
 
         return (
-            <div>{this.state.page}</div>
+            <div>
+                <div>{this.state.page}</div>
+                <div>{this.state.html}</div>
+            </div>
         );
 
 

@@ -38,6 +38,9 @@
     },
     "/tokensignin": {
       "target": "http://localhost:5000"
+    },
+    "/accountList": {
+      "target": "http://localhost:5000"
     }
   }
 }
