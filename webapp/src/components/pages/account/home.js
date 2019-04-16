@@ -8,6 +8,7 @@ import Cookies from "universal-cookie";
 import SignIn from "../../common/SignIn";
 import GoogleSignIn from "../../GoogleSignIn";
 import AccountCard from "./AccountCard";
+import {Redirect} from "react-router";
 const cookies = new Cookies();
 
 export default class AccountHome extends React.Component {
@@ -62,10 +63,6 @@ export default class AccountHome extends React.Component {
     }
 
     render() {
-
-        if (!cookies.get("token")) {
-            return <SignIn redirect={"/account"}/>
-        }
 
         return (
 
