@@ -43,7 +43,7 @@ export default class AccountHome extends React.Component {
 
             let page = (
 
-                <AccountCard name={res.name} email={res.email} desc={res.desc} picture={res.picture}/>
+                <AccountCard name={res.name} email={res.email} desc={res.desc} picture={res.picture} isAdmin={res.isAdmin}/>
 
             );
 

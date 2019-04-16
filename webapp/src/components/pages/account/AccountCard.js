@@ -1,5 +1,18 @@
 import React from 'react'
 
+const adminIcon = (
+
+    <div style={{
+        backgroundColor: "purple",
+        borderRadius: "10%",
+        fontSize: "0.3em",
+        color: "white",
+        padding: "0.1em",
+        margin: "0.25em",
+        display: "inline-block"
+    }}>Admin</div>
+
+);
 
 export default class AccountCard extends React.Component {
     constructor(props) {
@@ -8,7 +21,8 @@ export default class AccountCard extends React.Component {
             name: props.name,
             email: props.email,
             desc: props.desc,
-            picture: props.picture
+            picture: props.picture,
+            isAdmin: props.isAdmin
         };
 
     }
@@ -52,7 +66,7 @@ export default class AccountCard extends React.Component {
 
                                 <div className={"col-9"}>
                                     <div style={{padding: "10px 0 10px 0"}}>
-                                        <h1>{this.state.name}</h1>
+                                        <h1>{this.state.name}{this.state.isAdmin ? adminIcon : null}</h1>
                                         <h4>{this.state.email}</h4>
                                     </div>
 

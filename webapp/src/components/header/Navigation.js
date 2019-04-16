@@ -12,6 +12,9 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import CommitteesPage from "../pages/CommitteesPage";
 import HomePage from "../pages/HomePage";
 
+import Cookies from "universal-cookie";
+const cookies = new Cookies();
+
 export default class Navigation extends React.Component {
     constructor(props) {
         super(props);
@@ -19,9 +22,46 @@ export default class Navigation extends React.Component {
         this.toggle = this.toggle.bind(this);
         this.state = {
             isOpen: false,
-            isAdmin: this.props.isAdmin
+            isAdmin: this.props.isAdmin,
+            adminLink: null
         };
     }
+
+    componentDidMount() {
+
+
+
+        let xml = new XMLHttpRequest();
+
+        let onload = r => {
+
+            let res = JSON.parse(xml.response);
+            if (res.isAdmin) {
+
+                let link = (
+                    <NavItem>
+                        <Link to='/Admin'><NavLink>Admin</NavLink></Link>
+                    </NavItem>
+                );
+
+                this.setState({adminLink: link})
+            }
+
+        };
+
+        onload = onload.bind(this);
+
+        xml.open("POST", "/tokensignin");
+        xml.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+        xml.onload = onload;
+
+        xml.send(JSON.stringify({
+            verify: true,
+            idToken: cookies.get("token")
+        }));
+
+    }
+
     toggle() {
         this.setState({
             isOpen: !this.state.isOpen
@@ -47,12 +87,7 @@ export default class Navigation extends React.Component {
                                 <NavItem>
                                     <NavLink href={"https://rowanacm.slack.com"}>Slack</NavLink>
                                 </NavItem>
-                                {(this.props.isAdmin === 1)?
-                                
-                                    <NavItem>
-                                        <Link to='/Admin'><NavLink>Admin</NavLink></Link>
-                                    </NavItem>
-                                :null}
+                                {this.state.adminLink}
                                 {!this.props.user?
                                 <NavItem>
                                     <Link to={"/signin"}><NavLink>Sign In</NavLink></Link>
