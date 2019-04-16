@@ -15,7 +15,9 @@ export default class GoogleSignIn extends React.Component {
         super(props);
 
         this.state = {
-            redirect: props.redirect
+            redirect: props.redirect,
+            theme: props.theme ? props.theme : "light",
+            style: props.style
         };
 
         this.onSignIn = this.onSignIn.bind(this);
@@ -59,7 +61,7 @@ export default class GoogleSignIn extends React.Component {
     render() {
         return (
 
-           <GoogleLogin onSuccess={this.onSignIn} onFailure={responseGoogle} clientId={clientId}/>
+           <GoogleLogin onSuccess={this.onSignIn} onFailure={responseGoogle} clientId={clientId} theme={this.state.theme}/>
 
         );
     }

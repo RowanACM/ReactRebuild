@@ -34,39 +34,25 @@ export default class SignIn extends React.Component {
 
                 <Jumbotron title={"Sign in"}/>
 
-                <div className={"container-fluid"}>
+                <div className={"container"} style={{padding: "30px"}}>
 
-                    <div className={"row p-3"}>
+                    <div className={"card"}>
 
-                        <div className={"col-sm"}>
-                            <div className={"card"}>
-                                <div className={"card-header primary"}><h1>Sign In</h1></div>
-                                <div className={"card-body"}>
+                        <div className={"card-header primary"}><h1>Sign in</h1></div>
 
-                                    <form action={this.redirect}>
+                        <div className={"row p-3"}>
 
-                                        <p>Enter your Rowan credentials</p>
-                                        <div className={"form-group"}>
+                            <div className={"col-4"} style={{borderRight: "solid lightgrey 1px", display: "flex", alignItems: "center", justifyContent: "middle"}}>
 
-                                            <input className={"form-control"} type={"email"} placeholder={"Email"}/>
-                                        </div>
-                                        <div className={"form-group"}>
-                                            <input className={"form-control"} type={"password"} placeholder={"Password"}/>
-                                        </div>
-                                            <button className={"btn btn-primary primary"}>Sign In</button>
-
-                                    </form>
-
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div className={"col-sm"}>
-                            <div className={"card"}>
-                                <div className={"card-header primary"}><h1>Login with social account</h1></div>
                                 <GoogleSignIn redirect={this.redirect}/>
+
                             </div>
+
+                            <div className={"col-8"}>
+                                <p>At this time you must use an account affiliated with Rowan University.</p>
+
+                            </div>
+
                         </div>
 
                     </div>

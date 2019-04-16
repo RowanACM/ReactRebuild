@@ -31,7 +31,7 @@ export default class AnnouncementsList extends React.Component {
                     <div className="col">
                         {this.state.announcementList.map((announcement) =>
                         {
-                            let a = JSON.parse(announcement.announcement);;
+                            let a = JSON.parse(announcement.announcement);
                             return <div><AnnouncementCard title={a.title} text={a.text} date={a.date} name={a.name} link={a.link} color={a.color}/></div>
                         })
                         }
