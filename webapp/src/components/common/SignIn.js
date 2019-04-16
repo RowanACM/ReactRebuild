@@ -49,7 +49,7 @@ export default class SignIn extends React.Component {
                             </div>
 
                             <div className={"col-8"}>
-                                <p>At this time you must use an account affiliated with Rowan University.</p>
+                                <p>You must use an account affiliated with Rowan University.</p>
 
                             </div>
 
