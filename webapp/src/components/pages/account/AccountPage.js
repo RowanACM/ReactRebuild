@@ -1,10 +1,7 @@
 
 import React, { Component } from 'react';
-import logo from '../../logo.svg';
-import '../../App.css';
-import CommitteesList from './committees/CommitteesList';
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
-import AccountHome from './account/home';
+import '../../../App.css';
+import AccountHome from './home';
 import {Redirect} from "react-router";
 import Cookies from "universal-cookie";
 
@@ -25,7 +22,7 @@ export default class AccountPage extends React.Component {
         }
 
         return (
-        this.props.user?<AccountHome user={this.props.user} uid={this.props.uid} accessToken={this.props.accessToken} isAdmin={this.props.isAdmin}/>:null
+        this.props.user?<AccountHome self={true} user={this.props.user} uid={this.props.uid} accessToken={this.props.accessToken} isAdmin={this.props.isAdmin}/>:null
         );
 
 

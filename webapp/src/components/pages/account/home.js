@@ -27,12 +27,12 @@ export default class AccountHome extends React.Component {
             slack:"",
             github:"",
             pictureUrl:"",
-            page: "Loading..."
+            page: ""
         }
 
     }
 
-    componentDidMount() {
+    componentWillMount() {
 
         let xml = new XMLHttpRequest();
         xml.open("POST", "/tokensignin");

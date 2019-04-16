@@ -28,8 +28,8 @@ export default class AdminPage extends React.Component {
             adminToken:this.props.adminToken,
             user:this.props.user,
             isAdmin:this.props.isAdmin,
-            page: "Loading...",
-            html: this.renderAnnouncementForm()
+            page: "",
+            html: ""
         };
 
     }
@@ -42,15 +42,13 @@ export default class AdminPage extends React.Component {
 
     componentWillMount() {
 
-    }
-
-    componentDidMount() {
-
         let c = cookies.get("token");
 
         if (!c) { // User is not signed in
             return <SignIn redirect={"/Admin"}/>
         }
+
+        let xml = new XMLHttpRequest();
 
         let onload = r => {
 
@@ -72,6 +70,8 @@ export default class AdminPage extends React.Component {
                         html = <CommitteeForm adminUid={this.props.adminUid} adminToken={this.props.adminToken}/>;
                 }
                 var style = {cursor: "pointer"};
+
+                this.setState({html: this.renderAnnouncementForm()});
 
                 page = (
                     <div>
@@ -99,7 +99,7 @@ export default class AdminPage extends React.Component {
                                            }} style={style}>Edit Committee</a>
                                     </li>
                                 </ul>
-                                </div> :
+                            </div> :
                             <p>Please Sign In</p>}
                     </div>
                 );
@@ -116,7 +116,6 @@ export default class AdminPage extends React.Component {
 
         onload = onload.bind(this);
 
-        let xml = new XMLHttpRequest();
         xml.open("POST", "/tokensignin");
         xml.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
         xml.onload = onload;
@@ -125,6 +124,10 @@ export default class AdminPage extends React.Component {
             verify: true,
             idToken: c
         }));
+
+    }
+
+    componentDidMount() {
 
     }
 

@@ -22,7 +22,8 @@ export default class AccountCard extends React.Component {
             email: props.email,
             desc: props.desc,
             picture: props.picture,
-            isAdmin: props.isAdmin
+            isAdmin: props.isAdmin,
+            self: props.self
         };
 
     }

@@ -13,14 +13,12 @@ export default class AnnouncementsList extends React.Component {
 
     componentWillMount() {
 
-    }
-
-    componentDidMount() {
         fetch("/announcementList")
             .then((res)=>{return res.json()})
             .then(json=>{
                 json.reverse();
                 this.setState({announcementList:json});});
+
     }
 
     render () {

@@ -8,16 +8,12 @@ export default class AccountList extends React.Component {
         super(props);
         this.state={
             accountList:[],
-            page: "Loading..."
+            page: ""
         };
 
     }
 
     componentWillMount() {
-
-    }
-
-    componentDidMount() {
 
         let xml = new XMLHttpRequest();
 
