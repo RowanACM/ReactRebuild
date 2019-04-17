@@ -5,20 +5,34 @@ export default class ErrorPage extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state = {
+            fact: ""
+        };
+
+    }
+
+    componentWillMount() {
+
         let lines = null;
-        let xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", "facts.txt", false);
-        xmlhttp.send();
-        if (xmlhttp.status === 200) {
-            lines = xmlhttp.responseText;
+        let xml = new XMLHttpRequest();
 
-            let facts = lines.split("\n");
+        let onload = r => {
 
-            window.onload = function () {
-                document.getElementById("fact").innerText = facts[Math.floor((Math.random() * facts.length))];
-            };
+            if (xml.status === 200) {
+                lines = xml.responseText;
 
-        }
+                let facts = lines.split("\n");
+                this.setState({fact: facts[Math.floor((Math.random() * facts.length))]})
+
+            }
+
+        };
+
+        onload = onload.bind(this);
+
+        xml.onload = onload;
+        xml.open("GET", "/facts.txt");
+        xml.send();
 
     }
 
@@ -30,7 +44,7 @@ export default class ErrorPage extends React.Component {
                 <div style={{color: "gray", fontSize: "25px"}}>{this.code}</div>
                 <h1>Gadzooks!</h1>
                 <p>{this.desc} Here's a fun fact to console you!</p>
-                <p id={"fact"}/>
+                <p id={"fact"}>{this.state.fact}</p>
 
             </div>
         );
