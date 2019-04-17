@@ -1,5 +1,5 @@
 The Lego Group began in the workshop of Ole Kirk Christiansen (born 7 April 1891), a carpenter from Billund, Denmark, who began making wooden toys in 1932. In 1934, his company came to be called "Lego", from the Danish phrase leg godt, which means "play well".
-Alaska is the largest state in the United States in land area at 586,412 square miles (1,518,800 km2), over twice the size of Texas, the next largest state. Alaska is larger than all but 18 sovereign countries.
+Alaska is the largest state in the United States in land area at 586,412 square miles (1,518,800 km2), over twice the size of Texas, the next largest state. If Alaska was its own country, it would be the 19th largest in the world.
 In 1907, car salesman John Hertz looked at his surplus of traded-in cars and decided to start a taxi business . Since taxis needed to stand out, the color yellow was chosen. That was the result of a survey by the University of Chicago which concluded yellow was the easiest colour to spot.
 If you have a pizza with radius Z and thickness A, its volume is = Pi*Z*Z*A
 Hippopotomonstrosesquippedaliophobia is the fear of long words.
@@ -48,3 +48,4 @@ In 1967, the Nigerian Civil War ground to a halt for two days because both sides
 Jim Cummings is the voice of Winnie the Pooh. He calls sick kids in hospitals and chats with them in character.
 Before Google launched Gmail, "G-Mail" was the name of a free email service offered by Garfield's website.
 Before the Nazis invaded Paris, H.A. and Margret Rey fled on bicycles. They were carrying the manuscript for Curious George.
+Some people actually believe that braces should go on the next line.
