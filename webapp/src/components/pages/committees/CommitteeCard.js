@@ -15,32 +15,22 @@ export default class CommitteeCard extends React.Component {
         }
     }
 
-
-
     componentWillMount() {
 
     }
-    componentDidMount() {
-
-
-    }
-
-
-
-
 
     render () {
-        var style={height:"90%", margin:"20px"};
+        var style={width: "30vw", margin:"20px"};
 
         return (
             <div>
                 <div class="card text-white bg-primary mb-3" style={style}>
                   <img class="card-img-top" src={this.state.picture} alt="Card image cap"></img>
-                  <div class="card-body">
+                  <div class="card-body" style={{height: "25vh"}}>
                 <Link to = {'/Committee/'+this.state.title}><h5 class="card-title" style={{color:"WHITE"}}>{this.state.title}</h5></Link>
                 <p class="card-text">{this.state.desc}</p>
                 <p>If you have any question please contact {this.state.memberName} at </p>
-                <a href="#" class="btn btn-secondary" >{this.state.memberEmail}</a>
+                <a href={`mailto://${this.state.memberEmail}`} class="btn btn-secondary" >{this.state.memberEmail}</a>
                   </div>
              </div>
             </div>

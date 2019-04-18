@@ -41,6 +41,12 @@
     },
     "/accountList": {
       "target": "http://localhost:5000"
+    },
+    "/editAccount": {
+      "target": "http://localhost:5000"
+    },
+    "/committeeList": {
+      "target": "http://localhost:5000"
     }
   }
 }

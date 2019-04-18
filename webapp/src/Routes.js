@@ -6,7 +6,7 @@ import AdminPage from './components/pages/AdminPage';
 import CommitteeMembersPage from './components/pages/CommitteeMembersPage';
 
 import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
-import AccountPage from './components/pages/AccountPage';
+import AccountPage from './components/pages/account/AccountPage';
 import Page404 from './components/pages/error/400/Page404';
 import Navigation from './components/header/Navigation';
 import BrowserRouter from 'react-router-dom/BrowserRouter';
