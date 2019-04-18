@@ -23,7 +23,8 @@ export default class AccountCard extends React.Component {
             desc: props.desc,
             picture: props.picture,
             isAdmin: props.isAdmin,
-            self: props.self
+            self: props.self,
+            button: props.button
         };
 
     }
@@ -43,7 +44,7 @@ export default class AccountCard extends React.Component {
 
                 <div className={"container-fluid"}>
 
-                    <div className={"card"}>
+                    <div className={"card"} id={"card"}>
 
                         <div className={"card-header primary"}/>
 
@@ -53,7 +54,7 @@ export default class AccountCard extends React.Component {
 
                                 <div className={"col-3"} style={{borderRight: "solid lightgrey 1px", display: "flex", alignItems: "center", justifyContent: "middle"}}>
 
-                                    <div style={{
+                                    <div id={"picture"} style={{
                                         paddingTop: "90%",
                                         width: "90%",
                                         backgroundImage: `url(${this.state.picture})`,
@@ -67,11 +68,13 @@ export default class AccountCard extends React.Component {
 
                                 <div className={"col-9"}>
                                     <div style={{padding: "10px 0 10px 0"}}>
-                                        <h1>{this.state.name}{this.state.isAdmin ? adminIcon : null}</h1>
+                                        <h1>{this.state.name}{/*this.state.isAdmin ? adminIcon : null*/}</h1>
                                         <h4>{this.state.email}</h4>
                                     </div>
 
                                     <p>{this.state.desc}</p>
+
+                                    {this.state.button}
 
                                 </div>
 
