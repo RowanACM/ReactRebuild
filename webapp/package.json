@@ -9,7 +9,7 @@
     "mdbreact": "^4.8.1",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
-    "react-dev-utils": ">=5.0.2",
+    "react-dev-utils": ">=11.0.4",
     "react-dom": "^16.5.2",
     "react-route": "^1.0.3",
     "react-router": "^4.3.1",
